@@ -6,7 +6,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
     rel="stylesheet">
     <title>Canciones de BTS</title>
-    
+   
     <script>
       /* invoca a registraServiceWorker instalar la aplicación en el caché del
        * navegador. No se espera a que termine el registro. */
@@ -71,23 +71,25 @@
     <script src="/__/firebase/init.js"></script>
   </head>
   <body>
-    <form action="javascript:guarda()">
+    <div class="container">
+        <div class="form_top">
+    <form class="form_reg" action="javascript:guarda()">
       <h1>Canciones de BTS</h1>
       Ingre el nombre de las conciones y el nombre de los chicos que la cantan (Solo letras)
-      <p><input id="nombreCancion" type="text" placeholder="Nombre de la cancion" pattern="[a-zA-Zàáâäãåąčćęèé
+      <p><input class="input" id="nombreCancion" type="text" placeholder="Nombre de la cancion" pattern="[a-zA-Zàáâäãåąčćęèé
         êëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,48}" required/></p>
       
-        <p><input id="nombreChico" type="text" placeholder="Nombre del Chico" pattern="[a-zA-Zàáâäãåąčćęèé
+        <p><input class="input" id="nombreChico" type="text" placeholder="Nombre del Chico" pattern="[a-zA-Zàáâäãåąčćęèé
           êëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,48}" required/></p>
         
-      
-        <button id="agregar" type="button"
+      <center>
+        <button class="btn__submit" id="agregar" type="button"
          onclick="alta();">Agregar</button>
 
-        <button type="submit">Guardar</button>
-        <button id="eliminar" type="button"
+        <button class="btn__submit" type="submit">Guardar</button>
+        <button class="btn__reset"id="eliminar" type="button"
           onclick="elimina();">Eliminar</button>
-        
+        </center>
       <ul id="lista">
         <li><progress max="100">LOADING…</progress></li>
       </ul>
