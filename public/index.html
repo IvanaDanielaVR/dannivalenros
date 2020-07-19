@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
     rel="stylesheet">
-    <title>Canciones de BTS</title>
-   
+    <title>Canciones</title>
     <script>
       /* invoca a registraServiceWorker instalar la aplicación en el caché del
        * navegador. No se espera a que termine el registro. */
@@ -38,26 +39,27 @@
         alert(e.message);
       }
     </script>
+    
     <!-- Ícono para la página web. Debe ponerse en la raíz de la página. -->
     <link rel="icon" sizes="32x32" href="favicon.ico">
 
-    <!-- Color de la barra de navegación de Chrome en dispositivos móviles. -->
-    <meta name="theme-color" content="#ffcb2d">
+   <!-- Color de la barra de navegación de Chrome en dispositivos móviles. -->
+   <meta name="theme-color" content="#ca72ca">
 
-    <!-- Configuración de la PWA: Chrome y Edge. -->
-    <link rel="manifest" href="manifest.json">
+   <!-- Configuración de la PWA: Chrome y Edge. -->
+   <link rel="manifest" href="manifest.json">
 
-    <!-- Configuración para Web Clip en Safari. -->
-    <meta name="apple-mobile-web-app-title" content="dmppwa">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <link rel="apple-touch-icon" href="img/icono-2048.png">
-    <link rel="apple-touch-icon" sizes="256x256" href="img/icono-256.png">
-    <link rel="apple-touch-icon" sizes="1024x1024" href="img/icono-1024.png">
-    <link rel="apple-touch-icon" sizes="2048x2048" href="img/icono-2048.png">
-
+   <!-- Configuración para Web Clip en Safari. -->
+   <meta name="apple-mobile-web-app-title" content="Canciones">
+   <meta name="apple-mobile-web-app-capable" content="yes">
+   <meta name="apple-mobile-web-app-status-bar-style" content="default">
+   <link rel="apple-touch-icon" href="img/icono-2048.png">
+   <link rel="apple-touch-icon" sizes="256x256" href="img/icono-256.png">
+   <link rel="apple-touch-icon" sizes="1024x1024" href="img/icono-1024.png">
+   <link rel="apple-touch-icon" sizes="2048x2048" href="img/icono-2048.png">
+  
     <script type="module" src="cmp/mi-footer.js"></script>
-    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/estilo.css">
 
     <!-- Carga el núcleo de Firebase. Actualiza los números de versión cuando
     sea necesario. Hemos quitado el atributo defer que aparecía originalmente.
@@ -71,30 +73,40 @@
     <script src="/__/firebase/init.js"></script>
   </head>
   <body>
-    <div class="container">
-        <div class="form_top">
+    
+    
     <form class="form_reg" action="javascript:guarda()">
-      <h1>Canciones de BTS</h1>
-      Ingre el nombre de las conciones y el nombre de los chicos que la cantan (Solo letras)
-      <p><input class="input" id="nombreCancion" type="text" placeholder="Nombre de la cancion" pattern="[a-zA-Zàáâäãåąčćęèé
-        êëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,48}" required/></p>
-      
-        <p><input class="input" id="nombreChico" type="text" placeholder="Nombre del Chico" pattern="[a-zA-Zàáâäãåąčćęèé
-          êëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,48}" required/></p>
+      <header>
         
-      <center>
-        <button class="btn__submit" id="agregar" type="button"
-         onclick="alta();">Agregar</button>
-
-        <button class="btn__submit" type="submit">Guardar</button>
-        <button class="btn__reset"id="eliminar" type="button"
-          onclick="elimina();">Eliminar</button>
-        </center>
-      <ul id="lista">
-        <li><progress max="100">LOADING…</progress></li>
-      </ul>
+        <h1>Agregar Canciones</h1>
+        <button type="submit">
+          <span class="material-icons">
+            save
+          </span>
+        </button>
+        <button type="button" id="eliminar" onclick="elimina();">
+          <span class="material-icons">
+            delete
+          </span>
+        </button>
+      </header>
+      <div class="container">
+        <div class="form_top">
+     <h2> Ingrese el nombre de las canciones y el nombre de los chicos que la cantan</h2>
+      <p class="campo">
+        <input class="input" id="titulo" type="text"  pattern="[a-zA-Z ,áÁéÉóÓíÍñÑ0-9']{4,48}" required/>
+        <label for=titulo>Titulo</label>
+      </p>
       
+        <p class="campo">
+          <input class="input" id="artista" type="text" pattern="[a-zA-Z ,áÁéÉóÓíÍñÑ0-9']{3,48}" required/>
+          <label for=artista>Artista</label>
+        </p>
+       <ul id="lista">
+        <center> <progress max="100">LOADING…</progress></center>
+        </ul>
     </form>
+
     <script>
       /** Id del objeto seleccionado en la lista. */
       let id = "";
@@ -104,15 +116,14 @@
       function muestraLista() {
         /* Pide todos los registros de la colección "PASATIEMPO" ordenados por
          * el campo "PAS_NOMBRE" de forma ascendente. */
-        firestore.collection("CANCION").orderBy("CANCION_NOMBRE").onSnapshot(
+        firestore.collection("CANCIONES").orderBy("titulo").onSnapshot(
           documentos => {
             let inner = "";
             documentos.forEach(doc =>
               inner += /* html */
-              `<li>
-                <button type=button onclick="muestra('${cod(doc.id)}')">
-                  ${cod(doc.data().CANCION_NOMBRE)}
-                  ${cod(doc.data().NOMBRE_CHICO)}
+              ` <li>
+                <button class="blista" type=button onclick="muestra('${cod(doc.id)}')">
+                  ${cod(doc.data().titulo)} de ${cod(doc.data().artista)}
                 </button>
               </li>`);
             lista.innerHTML = inner;
@@ -125,11 +136,10 @@
       }
       /** Prepara la forma para capturar un pasatiempo nuevo. */
       function alta() {
-        agregar.disabled = true; // Deshabilita el botón "agregar".
         eliminar.disabled = true; // Deshabilita el botón "eliminar".
         id = ""; // Pone en blanco el id, porque todavía no agregamos a la BD.
-        nombreCancion.value = ""; // Pone en blanco los datos porque todavía no hay.
-        nombreChico.value = "";
+        titulo.value = ""; // Pone en blanco los datos porque todavía no hay.
+        artista.value = "";
 
       }
       /** Prepara la forma para modificar el documento que corresponde al
@@ -137,16 +147,16 @@
        * @param {string} idSel id del documento seleccionado en el listado. */
       async function muestra(idSel) {
         try {
-          agregar.disabled = false; // Habilita el botón "agregar".
+          
           eliminar.disabled = false; // Habilita el botón "eliminar".
           /* Recupera el documento con el id seleccionado en la colección
            * "PASATIEMPO". */
-          let doc = await firestore.collection("CANCION").doc(idSel).get();
+          let doc = await firestore.collection("CANCIONES").doc(idSel).get();
           if (doc.exists) {
             id = doc.id;
             let data = doc.data();
-            nombreCancion.value = data.CANCION_NOMBRE || "";
-            nombreChico.value = data.NOMBRE_CHICO|| "";
+            titulo.value = data.titulo|| "";
+            artista.value = data.artista|| "";
           } else {
             alert("El nombre selecionado no está registrado.");
             alta();
@@ -158,16 +168,16 @@
       async function guarda() {
         try {
           const modelo = {
-            CANCION_NOMBRE: nombreCancion.value.trim(), NOMBRE_CHICO: nombreChico.value.trim()
+            titulo:titulo.value.trim(), artista: artista.value.trim()
           };
           if (id) {
             /* Modifica el modelo en la base de datos en base al id y espera a
              * que termine. */
-            await firestore.collection("CANCION").doc(id).set(modelo);
+            await firestore.collection("CANCIONES").doc(id).set(modelo);
           } else {
             /* Agrega el modelo a la base de datos, genera automáticamente el
              * id y espera a que termine. */
-            await firestore.collection("CANCION").add(modelo);
+            await firestore.collection("CANCIONES").add(modelo);
           }
           alta();
         } catch (e) {
@@ -178,7 +188,7 @@
         try {
           /* Elimina el documento en la base de datos usando el id y espera a
            * que termine. */
-          await firestore.collection("CANCION").doc(id).delete();
+          await firestore.collection("CANCIONES").doc(id).delete();
           alta();
         } catch (e) {
           procesaError(e);
@@ -206,22 +216,9 @@
             });
       }
     </script>
-    <output id="mensaje" id="button">
-     
-
-      <progress max="100" id="barra">Cargando Firebase SDK&hellip;</progress>
-    </output>
-  </p>
-  </h2><mi-footer></mi-footer>
-  <script>
-    try {
-      let app = firebase.app();
-      let apis = ["auth", "firestore", "storage"]
-        .filter(api => typeof app[api] === "function");
-      mensaje.value = ``;
-    } catch (e) {
-      muestraError(e);
-    }
-  </script>
+    </div>
+  </div>
+    <mi-footer></mi-footer>
+  
   </body>
 </html>

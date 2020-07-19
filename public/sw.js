@@ -2,12 +2,12 @@
  * cualquier cambio en el contenido de este archivo hace que el service worker
  * se reinstale. Normalmente se cambia el número en el nombre del caché cuando
  * cambia el contenido de los archivos. */
-const CACHE = "canciones-1";
+const CACHE = "canciones-2";
 /**  Archivos requeridos para que la aplicación funcione fuera de línea.
  * El archivo 404.html no se incluye porque causa un error 404. */
 const ARCHIVOS = [
     "cmp/mi-footer.js",
-    "css/estilos.css",
+    "css/estilo.css",
     "img/icono-256.png",
     "img/icono-1024.png",
     "img/icono-2048.png",

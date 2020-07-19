@@ -1,5 +1,5 @@
 {
-    "short_name": "Nombre de canciones de BTS",
+    "short_name": "Canciones",
     "name": "PWA de nombres de canciones",
     "start_url": "/index.html",
     "display": "standalone",
