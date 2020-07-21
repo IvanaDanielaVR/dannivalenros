@@ -3,8 +3,8 @@
     "name": "PWA de nombres de canciones",
     "start_url": "/index.html",
     "display": "standalone",
-    "background_color": "#4fc3f7",
-    "theme_color": "#ffcb2d",
+    "background_color": "#ca72ca",
+    "theme_color": "#ca72ca",
     "icons": [
       {
         "src": "img/icono-2048.png",
