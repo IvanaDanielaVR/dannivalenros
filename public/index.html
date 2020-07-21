@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta http-equiv="Cache-Control" content="no-cache">
-    <meta http-equiv="Pragma" content="no-cache">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -92,15 +90,15 @@
       </header>
       <div class="container">
         <div class="form_top">
-     <h2> Ingrese el nombre de las canciones y el nombre de los chicos que la cantan</h2>
+     <h2>Ingrese la cancion que guste y su duracion</h2>
       <p class="campo">
         <input class="input" id="titulo" type="text"  pattern="[a-zA-Z ,áÁéÉóÓíÍñÑ0-9']{4,48}" required/>
         <label for=titulo>Titulo</label>
       </p>
       
         <p class="campo">
-          <input class="input" id="artista" type="text" pattern="[a-zA-Z ,áÁéÉóÓíÍñÑ0-9']{3,48}" required/>
-          <label for=artista>Artista</label>
+          <input class="input" id="duracion" type="text" pattern="[a-zA-Z ,áÁéÉóÓíÍñÑ0-9']{3,48}" required/>
+          <label for=artista>Duracion</label>
         </p>
        <ul id="lista">
         <center> <progress max="100">LOADING…</progress></center>
@@ -123,7 +121,7 @@
               inner += /* html */
               ` <li>
                 <button class="blista" type=button onclick="muestra('${cod(doc.id)}')">
-                  ${cod(doc.data().titulo)} de ${cod(doc.data().artista)}
+                  ${cod(doc.data().titulo)} dura ${cod(doc.data().duracion)} minutos
                 </button>
               </li>`);
             lista.innerHTML = inner;
@@ -139,7 +137,7 @@
         eliminar.disabled = true; // Deshabilita el botón "eliminar".
         id = ""; // Pone en blanco el id, porque todavía no agregamos a la BD.
         titulo.value = ""; // Pone en blanco los datos porque todavía no hay.
-        artista.value = "";
+        duracion.value = "";
 
       }
       /** Prepara la forma para modificar el documento que corresponde al
@@ -156,7 +154,7 @@
             id = doc.id;
             let data = doc.data();
             titulo.value = data.titulo|| "";
-            artista.value = data.artista|| "";
+            duracion.value = data.duracion|| "";
           } else {
             alert("El nombre selecionado no está registrado.");
             alta();
@@ -168,7 +166,7 @@
       async function guarda() {
         try {
           const modelo = {
-            titulo:titulo.value.trim(), artista: artista.value.trim()
+            titulo:titulo.value.trim(), duracion: duracion.value.trim()
           };
           if (id) {
             /* Modifica el modelo en la base de datos en base al id y espera a
