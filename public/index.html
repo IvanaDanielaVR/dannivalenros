@@ -91,7 +91,7 @@
       <div class="container">
         <div class="form_top">
      <h2>Ingrese la cancion que guste y su duracion</h2>
-      <p class="campo principal">
+      <p class="campo">
         <input class="input" id="titulo" type="text"  pattern="[a-zA-Z ,áÁéÉóÓíÍñÑ0-9']{4,48}" required/>
         <label for=titulo>Titulo</label>
       </p>
@@ -120,9 +120,11 @@
             documentos.forEach(doc =>
               inner += /* html */
               ` <li>
-                <button class="blista" type=button onclick="muestra('${cod(doc.id)}')">
-                  ${cod(doc.data().titulo)} dura ${cod(doc.data().duracion)} minutos
+                <button type=button onclick="muestra('${cod(doc.id)}')">
+                 <div class="campo principal"> ${cod(doc.data().titulo)} </span>
+                  <div class="campo"> ${cod(doc.data().duracion)} minutos </span>
                 </button>
+                </span>
               </li>`);
             lista.innerHTML = inner;
           },
