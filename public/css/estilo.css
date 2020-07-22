@@ -90,9 +90,24 @@
   p.campo :focus+label {
     color: var(--color-secundario);
   }
-  li{
-    margin: 10px;
-    font-size: 0.8rem;
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 1rem 0;
+  }
+
+  li {
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+  }
+
+  li:active {
+    background-color: var(--color-hover);
+  }
+
+  li .campo.principal {
+    font-size: large;
+    font-weight: bold
   }
   h2{
     padding: 1.5rem;
