@@ -97,12 +97,15 @@
       </p>
       
         <p class="campo">
-          <input class="input" id="duracion" type="text" pattern="[a-zA-Z ,áÁéÉóÓíÍñÑ0-9':]{3,48}" required/>
+          <input class="input" id="duracion" type="text" pattern="[0-9:]{4,8}" required/>
           <label for=artista>Duracion</label>
         </p>
        <ul id="lista">
         <center> <progress max="100">LOADING…</progress></center>
         </ul>
+        </div>
+      </div>
+      
     </form>
 
     <script>
@@ -119,13 +122,10 @@
             let inner = "";
             documentos.forEach(doc =>
               inner += /* html */
-              ` <li>
-                <button type=button onclick="muestra('${cod(doc.id)}')">
-                 <div class="campo principal"> ${cod(doc.data().titulo)} </span>
-                  <div class="campo"> ${cod(doc.data().duracion)} minutos </span>
-                </button>
-                </span>
-              </li>`);
+              ` <li onclick="muestra('${cod(doc.id)}')">
+                 <div class="campo principal"> ${cod(doc.data().titulo)} </div>
+                  <div class="campo"> ${cod(doc.data().duracion)} minutos </div>
+                 </li>`);
             lista.innerHTML = inner;
           },
           e => {
@@ -216,8 +216,7 @@
             });
       }
     </script>
-    </div>
-  </div>
+
     <mi-footer></mi-footer>
   
   </body>

@@ -8,7 +8,30 @@
 
   * {
     box-sizing: border-box;
-    font-size: large;
+    font-size: x-large;
+
+  }
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 1rem 0;
+  }
+
+  li {
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    font-size: x-large;
+  }
+
+  li:active {
+    background-color: #c7c7c7;
+  }
+
+  li .campo.principal {
+    font-weight: bold
+  }
+  li .campo{
+    font-weight: normal;
   }
 
   body {
@@ -21,13 +44,19 @@
     position: sticky;
     top: 0;
     background-color: var(--color-primario);
+    z-index: 2000;
   }
 
   h1 {
     margin: 0;
-    padding: 1.5rem 0 1.5rem 1.5rem;
+    padding: 1rem 0 1rem 1rem;
     font-size: 1.5rem;
     margin-right: auto;
+
+  }
+  h2{
+    font-size: xx-large;
+    text-align: center;
   }
 
   button {
